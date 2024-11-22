@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a21dca52-0a3a-41d7-ac64-ac1261594e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BikeManager/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/BikeOperationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/EBike.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/V2d.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeEndpoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Rest-lib-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,20 +40,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "temurin-21",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mikir/Desktop/Uni/SWArch/Lab-07",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "D:/Programs69/Homeworks/SAP/SAP-Ass02/test/src/main/java/org/example/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mikir/Desktop/Uni/SWArch/Lab-07&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;D:/Programs69/Homeworks/SAP/SAP-Ass02/test/src/main/java/org/example/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Programs69\Homeworks\SAP\SAP-Ass02\lib" />
