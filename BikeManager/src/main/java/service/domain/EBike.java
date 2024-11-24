@@ -3,7 +3,7 @@ package service.domain;
 /**
  * Entity object. Represents an EBike.
  */
-public class EBike {
+public class EBike implements java.io.Serializable {
 
     private final String id;
     private int battery;

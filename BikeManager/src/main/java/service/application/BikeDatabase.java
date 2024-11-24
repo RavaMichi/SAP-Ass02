@@ -12,6 +12,5 @@ public interface BikeDatabase {
     Optional<EBike> get(String id);
     List<EBike> getAll();
     void add(EBike bike);
-    void setBattery(EBike bike, int battery);
-    void setPosition(EBike bike, V2d position);
+    void setBatteryAndPosition(EBike bike, int battery, V2d position);
 }

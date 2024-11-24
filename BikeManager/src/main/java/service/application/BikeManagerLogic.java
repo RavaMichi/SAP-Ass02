@@ -44,8 +44,7 @@ public class BikeManagerLogic implements BikeManager, BikeEndpoint {
     public void updateBike(String id, int battery, V2d position) throws BikeOperationException {
         var bike = bikeDatabase.get(id);
         if (bike.isPresent()) {
-            bikeDatabase.setBattery(bike.get(), battery);
-            bikeDatabase.setPosition(bike.get(), position);
+            bikeDatabase.setBatteryAndPosition(bike.get(), battery, position);
             listeners.forEach(l -> l.onBikeUpdate(bike.get(), bikeDatabase.get(id).get()));
         } else {
             throw new BikeOperationException("EBike " + id + " does not exist");
