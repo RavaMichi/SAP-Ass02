@@ -9,8 +9,8 @@ import java.util.Optional;
  * Service object. Represents the ebike manager system, used by other services.
  */
 public interface BikeManager {
-    Optional<EBike> getBike(String id) throws BikeOperationException;
-    List<EBike> getAllBikes() throws BikeOperationException;
+    Optional<EBike> getBike(String id);
+    List<EBike> getAllBikes();
     void addBike(String id, int battery, V2d position) throws BikeOperationException;
 
     void addListener(BikeManagerListener listener);
