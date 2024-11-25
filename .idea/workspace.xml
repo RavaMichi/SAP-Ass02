@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a21dca52-0a3a-41d7-ac64-ac1261594e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/AuthChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BMRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BMResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeManagerAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/SimpleUserAuthChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeManagerAPITest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeMetricsServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/EBike.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/EBike.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeEndpointAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeEndpointAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeEndpointAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeEndpointAPITest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +41,7 @@
   "keyToString": {
     "JUnit.BikeEndpointAPITest.executor": "Run",
     "JUnit.BikeEndpointAPITest.testBikeUpdate.executor": "Run",
+    "JUnit.BikeEndpointAPITest.testBikeUpdateNotAuthorized.executor": "Run",
     "JUnit.BikeManagerAPITest.testAllBikes.executor": "Run",
     "JUnit.FileBikeDatabaseTests.executor": "Run",
     "Maven.BikeManager [io.micronaut.maven:micronaut-maven-plugin:4.7.1:run].executor": "Run",
@@ -199,7 +190,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730974564000</updated>
       <workItem from="1732266319295" duration="145000" />
-      <workItem from="1732536499900" duration="4264000" />
+      <workItem from="1732536499900" duration="5850000" />
     </task>
     <servers />
   </component>
