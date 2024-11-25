@@ -1,6 +1,7 @@
 package service.infrastructure;
 
 import io.micronaut.core.annotation.Introspected;
+import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.annotation.*;
 import service.application.BikeEndpoint;
 import service.domain.BikeOperationException;
@@ -19,13 +20,30 @@ public class BikeEndpointAPI {
     }
 
     @Post("/{id}/update")
-    public BikeUpdateResponse updateBikeState(@Body BikeUpdateRequest req, String id) {
+    public BikeUpdateResponse updateBikeState(
+            @Header(HttpHeaders.AUTHORIZATION) String token,
+            @Body BikeUpdateRequest req,
+            String id
+    ) {
         try {
-            bikeEndpoint.updateBike(id, req.battery(), req.position());
-            return new BikeUpdateResponse("EBike " + id + " updated", false);
+            if (isAuthorized(id, token)) {
+                bikeEndpoint.updateBike(id, req.battery(), req.position());
+                return new BikeUpdateResponse("EBike " + id + " updated", false);
+            } else {
+                return new BikeUpdateResponse("EBike " + id + " not authorized", true);
+            }
         } catch (BikeOperationException e) {
             return new BikeUpdateResponse(e.getMessage(), true);
         }
+    }
+
+    /**
+     * Checks if the bike is authorized given th token
+     */
+    private boolean isAuthorized(String bikeId, String token) {
+        // TODO improvement
+        // simple authorization check
+        return ("Bearer: bike " + bikeId).equals(token);
     }
 
     /**

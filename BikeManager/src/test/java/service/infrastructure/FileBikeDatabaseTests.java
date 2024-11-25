@@ -5,11 +5,9 @@ import service.application.BikeDatabase;
 import service.domain.EBike;
 import service.domain.V2d;
 
-import java.util.Objects;
-
 public class FileBikeDatabaseTests {
 
-    private final String filePath = ClassLoader.getSystemClassLoader().getResource("db.bikes").getPath();
+    private final String filePath = ClassLoader.getSystemClassLoader().getResource("db/.bikes").getPath();
     @Test
     public void testDatabaseCreation() {
         BikeDatabase db = new FileBikeDatabase(filePath);
