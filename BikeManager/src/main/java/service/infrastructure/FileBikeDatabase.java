@@ -1,5 +1,7 @@
 package service.infrastructure;
 
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import service.application.BikeDatabase;
 import service.domain.EBike;
 import service.domain.V2d;
@@ -10,15 +12,21 @@ import java.util.*;
 /**
  * File-based adapter of Bike Database port
  */
+@Singleton
 public class FileBikeDatabase implements BikeDatabase {
 
     private final File db;
     private final List<EBike> bikes;
 
+    public FileBikeDatabase() {
+        this(Config.databasePath);
+    }
+
     public FileBikeDatabase(String path) {
         this.db = new File(path);
         this.bikes = readAllBikes();
     }
+
     @Override
     public Optional<EBike> get(String id) {
         return bikes.stream().filter(b -> Objects.equals(b.getID(), id)).findFirst();

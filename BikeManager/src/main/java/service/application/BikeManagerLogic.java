@@ -1,5 +1,6 @@
 package service.application;
 
+import jakarta.inject.Singleton;
 import service.domain.*;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Optional;
 /**
  * Implementation of both BikeManager and BikeEndpoint
  */
+@Singleton
 public class BikeManagerLogic implements BikeManager, BikeEndpoint {
 
     private BikeDatabase bikeDatabase;

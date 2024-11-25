@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a21dca52-0a3a-41d7-ac64-ac1261594e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerLogic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeEndpointAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeEndpointAPITest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/V2d.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/V2d.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/FileBikeDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/FileBikeDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Record" />
         <option value="Interface" />
+        <option value="Record" />
         <option value="Class" />
       </list>
     </option>
@@ -40,26 +42,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mikir/Desktop/Uni/SWArch/Lab-07&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/Programs69/Homeworks/SAP/SAP-Ass02/test/src/main/java/org/example/Main.java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.BikeEndpointAPITest.testBikeUpdate.executor": "Run",
+    "JUnit.FileBikeDatabaseTests.executor": "Run",
+    "Maven.BikeManager [io.micronaut.maven:micronaut-maven-plugin:4.7.1:run].executor": "Run",
+    "Micronaut.Application.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "temurin-21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/mikir/Desktop/Uni/SWArch/Lab-07",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "D:/Programs69/Homeworks/SAP/SAP-Ass02/test/src/main/java/org/example/Main.java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Programs69\Homeworks\SAP\SAP-Ass02\lib" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.BikeEndpointAPITest.testBikeUpdate">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="BikeManager" />
@@ -73,8 +83,54 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BikeEndpointAPITest.testBikeUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BikeManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service.infrastructure" />
+      <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeEndpointAPITest" />
+      <option name="METHOD_NAME" value="testBikeUpdate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileBikeDatabaseTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BikeManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service.infrastructure" />
+      <option name="MAIN_CLASS_NAME" value="service.infrastructure.FileBikeDatabaseTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="MicronautRunConfigurationType" factoryName="Micronaut" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.Application" />
+      <module name="BikeManager" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="mainClass" value="app.Application" />
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
+      <option name="vmParameters" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BikeEndpointAPITest.testBikeUpdate" />
+        <item itemvalue="JUnit.FileBikeDatabaseTests" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
