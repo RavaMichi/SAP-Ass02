@@ -1,11 +1,10 @@
 package service.infrastructure;
 
-import io.micronaut.core.annotation.Introspected;
 import io.micronaut.http.HttpHeaders;
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
 import service.application.BikeEndpoint;
 import service.domain.BikeOperationException;
-import service.domain.V2d;
 
 /**
  * Adapter for BikeEndpoint. Exposes a REST API for EBikes to use.
@@ -20,20 +19,20 @@ public class BikeEndpointAPI {
     }
 
     @Post("/{id}/update")
-    public BikeUpdateResponse updateBikeState(
+    public HttpResponse<BMResponse> updateBikeState(
             @Header(HttpHeaders.AUTHORIZATION) String token,
-            @Body BikeUpdateRequest req,
+            @Body BMRequest req,
             String id
     ) {
         try {
             if (isAuthorized(id, token)) {
                 bikeEndpoint.updateBike(id, req.battery(), req.position());
-                return new BikeUpdateResponse("EBike " + id + " updated", false);
+                return HttpResponse.ok(new BMResponse("EBike " + id + " updated", false));
             } else {
-                return new BikeUpdateResponse("EBike " + id + " not authorized", true);
+                return HttpResponse.unauthorized();
             }
         } catch (BikeOperationException e) {
-            return new BikeUpdateResponse(e.getMessage(), true);
+            return HttpResponse.badRequest(new BMResponse(e.getMessage(), true));
         }
     }
 
@@ -43,28 +42,7 @@ public class BikeEndpointAPI {
     private boolean isAuthorized(String bikeId, String token) {
         // TODO improvement
         // simple authorization check
-        return ("Bearer: bike " + bikeId).equals(token);
+        return ("AUTHORIZED").equals(token);
     }
 
-    /**
-     * Body of a bike update request
-     * @param battery
-     * @param position
-     */
-    @Introspected
-    public record BikeUpdateRequest(
-            int battery,
-            V2d position
-    ) {}
-
-    /**
-     * Response to a bike update request
-     * @param message
-     * @param error
-     */
-    @Introspected
-    public record BikeUpdateResponse(
-            String message,
-            boolean error
-    ) {}
 }

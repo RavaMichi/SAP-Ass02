@@ -55,6 +55,6 @@ public class BikeManagerLogic implements BikeManager, BikeEndpoint {
 
     @Override
     public void addListener(BikeManagerListener listener) {
-        this.listeners.add(listener);
+        listeners.add(listener);
     }
 }

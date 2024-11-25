@@ -1,8 +1,11 @@
 package service.domain;
 
+import io.micronaut.core.annotation.Introspected;
+
 /**
  * Entity object. Represents an EBike.
  */
+@Introspected
 public class EBike implements java.io.Serializable {
 
     private final String id;

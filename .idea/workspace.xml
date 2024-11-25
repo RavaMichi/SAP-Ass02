@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a21dca52-0a3a-41d7-ac64-ac1261594e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/test/resources/db/.bikes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/AuthChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BMRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BMResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeManagerAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/SimpleUserAuthChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeManagerAPITest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/application/BikeManagerLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/EBike.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/domain/EBike.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeEndpointAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeEndpointAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeEndpointAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeEndpointAPITest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/FileBikeDatabaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/FileBikeDatabaseTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/resources/db.bikes" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/resources/db/.bikes" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -45,6 +51,7 @@
   "keyToString": {
     "JUnit.BikeEndpointAPITest.executor": "Run",
     "JUnit.BikeEndpointAPITest.testBikeUpdate.executor": "Run",
+    "JUnit.BikeManagerAPITest.testAllBikes.executor": "Run",
     "JUnit.FileBikeDatabaseTests.executor": "Run",
     "Maven.BikeManager [io.micronaut.maven:micronaut-maven-plugin:4.7.1:run].executor": "Run",
     "Micronaut.Application.executor": "Run",
@@ -69,21 +76,11 @@
       <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager\src\test\resources\db" />
       <recent name="D:\Programs69\Homeworks\SAP\SAP-Ass02\lib" />
     </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="service.infrastructure" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.BikeEndpointAPITest">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
-      <module name="BikeManager" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.BikeManagerAPITest.testAllBikes">
     <configuration name="BikeEndpointAPITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BikeManager" />
       <extension name="coverage">
@@ -110,6 +107,38 @@
       <option name="PACKAGE_NAME" value="service.infrastructure" />
       <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeEndpointAPITest" />
       <option name="METHOD_NAME" value="testBikeUpdate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BikeEndpointAPITest.testBikeUpdateNotAuthorized" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BikeManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service.infrastructure" />
+      <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeEndpointAPITest" />
+      <option name="METHOD_NAME" value="testBikeUpdateNotAuthorized" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BikeManagerAPITest.testAllBikes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BikeManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service.infrastructure" />
+      <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeManagerAPITest" />
+      <option name="METHOD_NAME" value="testAllBikes" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -145,10 +174,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BikeEndpointAPITest" />
+        <item itemvalue="JUnit.BikeManagerAPITest.testAllBikes" />
         <item itemvalue="JUnit.BikeEndpointAPITest.testBikeUpdate" />
+        <item itemvalue="JUnit.BikeEndpointAPITest.testBikeUpdateNotAuthorized" />
+        <item itemvalue="JUnit.BikeEndpointAPITest" />
         <item itemvalue="JUnit.FileBikeDatabaseTests" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -169,7 +199,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730974564000</updated>
       <workItem from="1732266319295" duration="145000" />
-      <workItem from="1732536499900" duration="1291000" />
+      <workItem from="1732536499900" duration="4264000" />
     </task>
     <servers />
   </component>
