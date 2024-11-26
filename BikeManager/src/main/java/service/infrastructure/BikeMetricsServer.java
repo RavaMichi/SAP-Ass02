@@ -1,19 +1,25 @@
 package service.infrastructure;
 
+import io.micrometer.prometheusmetrics.PrometheusMeterRegistry;
 import io.micrometer.core.instrument.*;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import service.application.BikeManager;
 import service.application.BikeManagerListener;
 import service.domain.EBike;
 
-@Singleton
+@Controller("/prometheus")
 public class BikeMetricsServer implements BikeManagerListener {
 
     private final Counter totalBikes;
     private double avgBatteryLevel;
+    private PrometheusMeterRegistry prometheusRegistry;
 
-    public BikeMetricsServer(BikeManager bikeManager, MeterRegistry meterRegistry) {
+    public BikeMetricsServer(BikeManager bikeManager, PrometheusMeterRegistry meterRegistry) {
         bikeManager.addListener(this);
+        this.prometheusRegistry = meterRegistry;
 
         // track the number of bikes
         totalBikes = Counter.builder("number_of_bikes")
@@ -56,5 +62,18 @@ public class BikeMetricsServer implements BikeManagerListener {
 
         return (currentTotalBattery + delta) / totalBikesCount;
     }
+    @Get
+    public String index() {
+        return prometheusRegistry.scrape();
+    }
 
+    @Get("/total-bikes")
+    public int totalBikesCount() {
+        return (int)totalBikes.count();
+    }
+
+    @Get("/avg-battery")
+    public double averageBatteryLevel() {
+        return avgBatteryLevel;
+    }
 }
