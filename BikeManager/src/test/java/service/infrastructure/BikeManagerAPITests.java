@@ -12,8 +12,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Component testing
+ */
 @MicronautTest
-public class BikeManagerAPITest {
+public class BikeManagerAPITests {
     @Inject
     @Client("/") // Injects an HTTP client for testing
     HttpClient client;
