@@ -2,13 +2,15 @@ package service.infrastructure.metrics;
 
 import io.micrometer.prometheusmetrics.PrometheusMeterRegistry;
 import io.micrometer.core.instrument.*;
+import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.Produces;
 import service.application.BikeManager;
 import service.application.BikeManagerListener;
 import service.domain.EBike;
 
-@Controller("/prometheus")
+@Controller("/metrics")
 public class BikeMetricsServer implements BikeManagerListener {
 
     private final Counter totalBikes;
@@ -61,6 +63,7 @@ public class BikeMetricsServer implements BikeManagerListener {
         return (currentTotalBattery + delta) / totalBikesCount;
     }
     @Get
+    @Produces(MediaType.TEXT_PLAIN)
     public String index() {
         return prometheusRegistry.scrape();
     }

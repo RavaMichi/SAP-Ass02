@@ -1,0 +1,25 @@
+name: bike-rental-service
+
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+    networks:
+      - prometheus
+    ports:
+      - "9090:9090"
+    expose:
+      - 9090
+  bike-manager:
+    image: bike-manager
+    container_name: bike-manager-01
+    networks:
+      - prometheus
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+networks:
+  prometheus:
+    driver: bridge

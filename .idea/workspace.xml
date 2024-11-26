@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a21dca52-0a3a-41d7-ac64-ac1261594e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeManagerTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeEndpointAPITest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeManagerAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeManagerAPITests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/FileBikeDatabaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/FileBikeDatabaseTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/endpoints/BikeManagerHealthCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/metrics/BikeMetricsServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/metrics/BikeMetricsServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +22,7 @@
         <option value="Record" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -59,7 +60,7 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "temurin-21",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mikir/Desktop/Uni/SWArch/Lab-07",
+    "last_opened_file_path": "C:/Users/mikir/Desktop/Uni/SWArch/ass02/SAP-Ass02",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -70,11 +71,15 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager" />
+      <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager\docker-maven" />
       <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager\target" />
       <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager\src\main\resources\app" />
       <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager\src\test\resources\db" />
-      <recent name="D:\Programs69\Homeworks\SAP\SAP-Ass02\lib" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
       <recent name="service.infrastructure" />
@@ -172,6 +177,10 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
