@@ -1,4 +1,4 @@
-package service.infrastructure;
+package service.infrastructure.endpoints;
 
 import io.micronaut.core.annotation.Introspected;
 import service.domain.V2d;

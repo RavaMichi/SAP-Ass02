@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a21dca52-0a3a-41d7-ac64-ac1261594e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BikeManager/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeManagerHealthCheck.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeMetricsServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeMetricsServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/AuthChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/auth/AuthChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BMRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/endpoints/BMRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BMResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/endpoints/BMResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeEndpointAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/endpoints/BikeEndpointAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeManagerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/endpoints/BikeManagerAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeManagerHealthCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/endpoints/BikeManagerHealthCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/BikeMetricsServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/metrics/BikeMetricsServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/endpoints/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/FileBikeDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/db/FileBikeDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/SimpleUserAuthChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/auth/SimpleUserAuthChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeEndpointAPITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeEndpointAPITest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/FileBikeDatabaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/FileBikeDatabaseTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,33 +49,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.BikeEndpointAPITest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BikeEndpointAPITest.testBikeUpdate.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BikeEndpointAPITest.testBikeUpdateNotAuthorized.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BikeManagerAPITest.testAllBikes.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FileBikeDatabaseTests.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.BikeManager [io.micronaut.maven:micronaut-maven-plugin:4.7.1:run].executor&quot;: &quot;Run&quot;,
-    &quot;Micronaut.Application.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mikir/Desktop/Uni/SWArch/Lab-07&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/Programs69/Homeworks/SAP/SAP-Ass02/test/src/main/java/org/example/Main.java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.BikeEndpointAPITest.executor": "Run",
+    "JUnit.BikeEndpointAPITest.testBikeUpdate.executor": "Run",
+    "JUnit.BikeEndpointAPITest.testBikeUpdateNotAuthorized.executor": "Run",
+    "JUnit.BikeManagerAPITest.testAllBikes.executor": "Run",
+    "JUnit.FileBikeDatabaseTests.executor": "Run",
+    "Maven.BikeManager [io.micronaut.maven:micronaut-maven-plugin:4.7.1:dockerfile].executor": "Run",
+    "Maven.BikeManager [io.micronaut.maven:micronaut-maven-plugin:4.7.1:run].executor": "Run",
+    "Maven.BikeManager [org.apache.maven.plugins:maven-jar-plugin:3.4.2:jar].executor": "Run",
+    "Maven.BikeManager [package].executor": "Run",
+    "Micronaut.Application.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "temurin-21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/mikir/Desktop/Uni/SWArch/Lab-07",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "D:/Programs69/Homeworks/SAP/SAP-Ass02/test/src/main/java/org/example/Main.java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager\src\main\resources\app" />
       <recent name="C:\Users\mikir\Desktop\Uni\SWArch\ass02\SAP-Ass02\BikeManager\src\test\resources\db" />
       <recent name="D:\Programs69\Homeworks\SAP\SAP-Ass02\lib" />
     </key>
@@ -75,12 +87,12 @@
       <recent name="service.infrastructure" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BikeManagerAPITest.testAllBikes">
+  <component name="RunManager" selected="JUnit.BikeEndpointAPITest.testBikeUpdate">
     <configuration name="BikeEndpointAPITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BikeManager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="PATTERN" value="service.infrastructure.auth.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -95,7 +107,7 @@
       <module name="BikeManager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="PATTERN" value="service.infrastructure.auth.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,7 +123,7 @@
       <module name="BikeManager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="PATTERN" value="service.infrastructure.auth.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -127,7 +139,7 @@
       <module name="BikeManager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="PATTERN" value="service.infrastructure.auth.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,7 +155,7 @@
       <module name="BikeManager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="PATTERN" value="service.infrastructure.auth.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -169,8 +181,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BikeManagerAPITest.testAllBikes" />
         <item itemvalue="JUnit.BikeEndpointAPITest.testBikeUpdate" />
+        <item itemvalue="JUnit.BikeManagerAPITest.testAllBikes" />
         <item itemvalue="JUnit.BikeEndpointAPITest.testBikeUpdateNotAuthorized" />
         <item itemvalue="JUnit.BikeEndpointAPITest" />
         <item itemvalue="JUnit.FileBikeDatabaseTests" />

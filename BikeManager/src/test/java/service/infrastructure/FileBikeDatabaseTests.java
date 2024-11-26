@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import service.application.BikeDatabase;
 import service.domain.EBike;
 import service.domain.V2d;
+import service.infrastructure.db.FileBikeDatabase;
 
 public class FileBikeDatabaseTests {
 

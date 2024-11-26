@@ -1,4 +1,4 @@
-package service.infrastructure;
+package service.infrastructure.auth;
 
 import jakarta.inject.Singleton;
 

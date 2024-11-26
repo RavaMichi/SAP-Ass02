@@ -1,4 +1,4 @@
-package service.infrastructure;
+package service.infrastructure.endpoints;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Get;

@@ -1,4 +1,4 @@
-package service.infrastructure;
+package service.infrastructure.endpoints;
 
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
@@ -6,6 +6,7 @@ import io.micronaut.http.annotation.*;
 import service.application.BikeManager;
 import service.domain.BikeOperationException;
 import service.domain.EBike;
+import service.infrastructure.auth.AuthChecker;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,11 +1,9 @@
-package service.infrastructure;
+package service.infrastructure.metrics;
 
 import io.micrometer.prometheusmetrics.PrometheusMeterRegistry;
 import io.micrometer.core.instrument.*;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
-import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
 import service.application.BikeManager;
 import service.application.BikeManagerListener;
 import service.domain.EBike;

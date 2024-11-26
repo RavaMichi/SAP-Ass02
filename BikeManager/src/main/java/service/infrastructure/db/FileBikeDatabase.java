@@ -1,10 +1,10 @@
-package service.infrastructure;
+package service.infrastructure.db;
 
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import service.application.BikeDatabase;
 import service.domain.EBike;
 import service.domain.V2d;
+import service.infrastructure.endpoints.Config;
 
 import java.io.*;
 import java.util.*;
