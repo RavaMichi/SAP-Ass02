@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a21dca52-0a3a-41d7-ac64-ac1261594e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BikeManager/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/application/MockBikeDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BikeManager/src/test/java/service/infrastructure/BikeManagerEndToEndTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/endpoints/BikeManagerHealthCheck.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/metrics/BikeMetricsServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/metrics/BikeMetricsServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.txt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/db/FileBikeDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/BikeManager/src/main/java/service/infrastructure/db/FileBikeDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BikeManager/src/test/resources/db/.bikes" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +21,8 @@
       <list>
         <option value="Record" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Dockerfile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -47,6 +47,8 @@
     "JUnit.BikeEndpointAPITest.testBikeUpdate.executor": "Run",
     "JUnit.BikeEndpointAPITest.testBikeUpdateNotAuthorized.executor": "Run",
     "JUnit.BikeManagerAPITest.testAllBikes.executor": "Run",
+    "JUnit.BikeManagerEndToEndTests.executor": "Run",
+    "JUnit.BikeManagerEndToEndTests.testAllBikes.executor": "Run",
     "JUnit.BikeManagerTests.testListBikes.executor": "Run",
     "JUnit.FileBikeDatabaseTests.executor": "Run",
     "Maven.BikeManager [io.micronaut.maven:micronaut-maven-plugin:4.7.1:dockerfile].executor": "Run",
@@ -85,22 +87,7 @@
       <recent name="service.infrastructure" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BikeManagerTests.testListBikes">
-    <configuration name="BikeEndpointAPITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BikeManager" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.infrastructure.auth.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="service.infrastructure" />
-      <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeEndpointAPITest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.BikeManagerEndToEndTests">
     <configuration name="BikeEndpointAPITest.testBikeUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BikeManager" />
       <extension name="coverage">
@@ -117,22 +104,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BikeEndpointAPITest.testBikeUpdateNotAuthorized" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BikeManager" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="service.infrastructure.auth.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="service.infrastructure" />
-      <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeEndpointAPITest" />
-      <option name="METHOD_NAME" value="testBikeUpdateNotAuthorized" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="BikeManagerAPITest.testAllBikes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BikeManager" />
       <extension name="coverage">
@@ -143,6 +114,37 @@
       </extension>
       <option name="PACKAGE_NAME" value="service.infrastructure" />
       <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeManagerAPITest" />
+      <option name="METHOD_NAME" value="testAllBikes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BikeManagerEndToEndTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BikeManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service.infrastructure" />
+      <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeManagerEndToEndTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BikeManagerEndToEndTests.testAllBikes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BikeManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.infrastructure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service.infrastructure" />
+      <option name="MAIN_CLASS_NAME" value="service.infrastructure.BikeManagerEndToEndTests" />
       <option name="METHOD_NAME" value="testAllBikes" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -184,11 +186,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BikeManagerEndToEndTests" />
+        <item itemvalue="JUnit.BikeManagerEndToEndTests.testAllBikes" />
         <item itemvalue="JUnit.BikeManagerTests.testListBikes" />
         <item itemvalue="JUnit.BikeEndpointAPITest.testBikeUpdate" />
         <item itemvalue="JUnit.BikeManagerAPITest.testAllBikes" />
-        <item itemvalue="JUnit.BikeEndpointAPITest.testBikeUpdateNotAuthorized" />
-        <item itemvalue="JUnit.BikeEndpointAPITest" />
       </list>
     </recent_temporary>
   </component>

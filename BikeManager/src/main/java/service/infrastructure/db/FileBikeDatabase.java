@@ -1,5 +1,6 @@
 package service.infrastructure.db;
 
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import service.application.BikeDatabase;
 import service.domain.EBike;
@@ -7,6 +8,9 @@ import service.domain.V2d;
 import service.infrastructure.endpoints.Config;
 
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 /**
@@ -18,12 +22,19 @@ public class FileBikeDatabase implements BikeDatabase {
     private final File db;
     private final List<EBike> bikes;
 
+    @Inject
     public FileBikeDatabase() {
         this(Config.databasePath);
     }
 
     public FileBikeDatabase(String path) {
-        this.db = new File(path);
+        URL url = this.getClass().getResource("/" + path);
+        try {
+            assert url != null;
+            this.db = new File(url.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
         this.bikes = readAllBikes();
     }
 
