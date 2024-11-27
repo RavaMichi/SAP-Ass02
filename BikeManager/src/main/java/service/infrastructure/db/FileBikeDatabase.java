@@ -5,10 +5,8 @@ import jakarta.inject.Singleton;
 import service.application.BikeDatabase;
 import service.domain.EBike;
 import service.domain.V2d;
-import service.infrastructure.endpoints.Config;
 
 import java.io.*;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
