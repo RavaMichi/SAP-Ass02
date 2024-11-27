@@ -21,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * End-to-End testing
+ * Component testing
  */
 @MicronautTest
-public class BikeManagerEndToEndTests {
+public class BikeManagerMetricsTests {
     @Inject
     @Client("/") // Injects an HTTP client for testing
     HttpClient client;
