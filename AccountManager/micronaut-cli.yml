@@ -3,4 +3,5 @@ defaultPackage: app
 testFramework: junit
 sourceLanguage: java
 buildTool: maven
-features: [app-name, http-client-test, jackson-databind, java, java-application, junit, logback, management, maven, maven-enforcer-plugin, micrometer, micrometer-prometheus, micronaut-aot, micronaut-http-validation, netty-server, properties, readme, shade, static-resources]
+features: [app-name, http-client-test, jackson-databind, java, java-application, junit, logback, management, maven, maven-enforcer-plugin, micronaut-aot, micronaut-http-validation, netty-server, properties, readme, shade, static-resources]
+# , micrometer, micrometer-prometheus
