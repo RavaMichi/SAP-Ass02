@@ -1,4 +1,4 @@
-package service.infrastructure.endpoints;
+package service.infrastructure.db;
 
 import jakarta.inject.Singleton;
 
