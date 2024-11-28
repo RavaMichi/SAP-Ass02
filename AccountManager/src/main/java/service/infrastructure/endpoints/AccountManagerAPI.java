@@ -62,7 +62,7 @@ public class AccountManagerAPI {
     ) {
         try {
             if (authChecker.isAuthorized(token)) {
-                accountManager.addCreditToUser(req.username(), req.credit());
+                accountManager.addCreditToUser(req.username(), req.credits());
                 return HttpResponse.created(new AMResponse("User " + req.username() + " updated", false));
             } else {
                 return HttpResponse.unauthorized();
@@ -78,7 +78,7 @@ public class AccountManagerAPI {
     ) {
         try {
             if (authChecker.isAuthorized(token)) {
-                accountManager.removeCreditFromUser(req.username(), req.credit());
+                accountManager.removeCreditFromUser(req.username(), req.credits());
                 return HttpResponse.created(new AMResponse("User " + req.username() + " updated", false));
             } else {
                 return HttpResponse.unauthorized();
