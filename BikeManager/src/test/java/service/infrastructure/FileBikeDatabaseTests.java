@@ -11,9 +11,10 @@ import service.infrastructure.db.FileBikeDatabase;
  */
 public class FileBikeDatabaseTests {
 
-    private final String filePath = ClassLoader.getSystemClassLoader().getResource("db/.bikes").getPath();
+    private final String filePath = "db/.bikes";
     @Test
     public void testDatabaseCreation() {
+        System.out.println(filePath);
         BikeDatabase db = new FileBikeDatabase(filePath);
     }
     @Test
