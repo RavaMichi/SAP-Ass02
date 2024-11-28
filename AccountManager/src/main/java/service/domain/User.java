@@ -3,7 +3,7 @@ package service.domain;
 /**
  * Entity object. Represents a user, with proper account and credits
  */
-public class User {
+public class User implements java.io.Serializable {
     private final String username;
     private int credits;
 
