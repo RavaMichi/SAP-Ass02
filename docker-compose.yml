@@ -17,9 +17,18 @@ services:
     networks:
       - prometheus
     ports:
-      - "8080:8080"
+      - "9091:8080"
     expose:
-      - 8080
+      - 9091
+  account-manager:
+    image: account-manager
+    container_name: account-manager-01
+    networks:
+      - prometheus
+    ports:
+      - "9092:8080"
+    expose:
+      - 9092
 networks:
   prometheus:
     driver: bridge
