@@ -7,16 +7,18 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Header;
 import io.micronaut.http.annotation.Post;
 import service.application.RideManager;
-import service.application.RideManagerListener;
 import service.domain.RideManagerException;
+import service.infrastructure.auth.AuthChecker;
 
 @Controller("/ride-service")
 public class RideManagerAPI {
 
     private final RideManager rideManager;
+    private final AuthChecker authChecker;
 
-    public RideManagerAPI(RideManager rideManager) {
+    public RideManagerAPI(RideManager rideManager, AuthChecker authChecker) {
         this.rideManager = rideManager;
+        this.authChecker = authChecker;
     }
 
     @Post("/connect")
@@ -25,8 +27,12 @@ public class RideManagerAPI {
             @Body RMRequest req
     ) {
         try {
-            rideManager.connectUserToBike(req.userId(), req.bikeId());
-            return HttpResponse.ok(new RMResponse("Successful connection", false));
+            if (authChecker.isAuthorized(token)) {
+                rideManager.connectUserToBike(req.userId(), req.bikeId());
+                return HttpResponse.ok(new RMResponse("Successful connection", false));
+            } else {
+                return HttpResponse.unauthorized();
+            }
         } catch (RideManagerException e) {
             return HttpResponse.badRequest(new RMResponse(e.getMessage(), true));
         }
@@ -38,8 +44,12 @@ public class RideManagerAPI {
             @Body RMRequest req
     ) {
         try {
-            rideManager.disconnectUserFromBike(req.userId(), req.bikeId());
-            return HttpResponse.ok(new RMResponse("Successful disconnection", false));
+            if (authChecker.isAuthorized(token)) {
+                rideManager.disconnectUserFromBike(req.userId(), req.bikeId());
+                return HttpResponse.ok(new RMResponse("Successful disconnection", false));
+            } else {
+                return HttpResponse.unauthorized();
+            }
         } catch (RideManagerException e) {
             return HttpResponse.badRequest(new RMResponse(e.getMessage(), true));
         }
