@@ -6,6 +6,9 @@ import service.domain.RideManagerException;
 
 import java.util.*;
 
+/**
+ * Application logic. Manages all rentals
+ */
 @Singleton
 public class RideManagerLogic implements RideManager {
     private final RideDatabase database;
