@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import service.application.RideDatabase;
 import service.domain.Ride;
+import service.infrastructure.Config;
 
 import java.io.*;
 import java.net.URISyntaxException;

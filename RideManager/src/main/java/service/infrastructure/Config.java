@@ -1,8 +1,9 @@
-package service.infrastructure.db;
+package service.infrastructure;
 
 import jakarta.inject.Singleton;
 
 @Singleton
 public class Config {
     public static final String databasePath = "db/.rides";
+    public static final String serviceToken = "AUTHORIZED";
 }

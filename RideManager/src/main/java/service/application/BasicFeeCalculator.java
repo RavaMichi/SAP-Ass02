@@ -1,7 +1,10 @@
 package service.application;
 
+import jakarta.inject.Singleton;
+
 import java.util.Date;
 
+@Singleton
 public class BasicFeeCalculator implements FeeCalculator {
 
     private double basicFee = 60;
