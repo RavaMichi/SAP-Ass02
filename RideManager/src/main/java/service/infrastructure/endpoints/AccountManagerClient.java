@@ -10,6 +10,7 @@ import io.micronaut.json.tree.JsonObject;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import service.application.AccountManager;
+import service.domain.RideManagerException;
 import service.infrastructure.Config;
 
 import java.util.Optional;
@@ -46,15 +47,15 @@ public class AccountManagerClient implements AccountManager {
     @Override
     public void deductCreditsFromUser(String username, int amount) {
         try {
-            HttpRequest<?> request = HttpRequest.POST("/" + username + "/remove-credit").header(HttpHeaders.AUTHORIZATION, Config.serviceToken);
+            HttpRequest<?> request = HttpRequest.POST("/" + username + "/remove-credit", new UserInfo(username, amount)).header(HttpHeaders.AUTHORIZATION, Config.serviceToken);
             // send request and wait
-            return Optional.ofNullable(httpClient.toBlocking().retrieve(request, UserInfo.class));
+            httpClient.toBlocking().retrieve(request, String.class);
+
         } catch (Exception e) {
-            return Optional.empty();
+            throw new RideManagerException("Error in deducting credit from user " + username);
         }
     }
 
     @Introspected
     private record UserInfo(String username, int credits) {}
-
 }
