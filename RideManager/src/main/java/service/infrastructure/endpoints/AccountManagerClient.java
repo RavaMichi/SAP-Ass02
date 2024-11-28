@@ -5,8 +5,6 @@ import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
-import io.micronaut.json.tree.JsonNode;
-import io.micronaut.json.tree.JsonObject;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import service.application.AccountManager;
