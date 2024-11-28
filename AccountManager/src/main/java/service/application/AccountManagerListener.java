@@ -3,7 +3,7 @@ package service.application;
 import service.domain.*;
 
 /**
- * Interface for listening to Account manager events (add user, set user credit)
+ * Interface for listening to Account manager events (add user, set user credits)
  */
 public interface AccountManagerListener {
     void onUserAdded(User user);

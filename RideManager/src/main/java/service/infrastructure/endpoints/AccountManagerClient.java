@@ -45,7 +45,13 @@ public class AccountManagerClient implements AccountManager {
 
     @Override
     public void deductCreditsFromUser(String username, int amount) {
-        
+        try {
+            HttpRequest<?> request = HttpRequest.POST("/" + username + "/remove-credit").header(HttpHeaders.AUTHORIZATION, Config.serviceToken);
+            // send request and wait
+            return Optional.ofNullable(httpClient.toBlocking().retrieve(request, UserInfo.class));
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     @Introspected

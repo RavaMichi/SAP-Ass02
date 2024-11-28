@@ -8,5 +8,5 @@ import io.micronaut.core.annotation.Introspected;
 @Introspected
 public record UserSetRequest(
         String username,
-        int credit
+        int credits
 ) {}
