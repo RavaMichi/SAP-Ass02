@@ -56,6 +56,16 @@ public class RideManagerLogic implements RideManager {
     }
 
     @Override
+    public List<Ride> getAllRides() {
+        return database.getAllRides();
+    }
+
+    @Override
+    public Optional<Ride> getRide(String userId, String bikeId) {
+        return database.getRide(userId, bikeId);
+    }
+
+    @Override
     public void addListener(RideManagerListener listener) {
         listeners.add(listener);
     }
