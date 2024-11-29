@@ -21,7 +21,7 @@ public class RideManagerAPI {
         this.authChecker = authChecker;
     }
 
-    @Get
+    @Get("/rides")
     public HttpResponse<List<Ride>> getAllRides(@Header(HttpHeaders.AUTHORIZATION) String token) {
         if (authChecker.isAuthorized(token)) {
             return HttpResponse.ok(rideManager.getAllRides());

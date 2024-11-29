@@ -17,9 +17,10 @@ import java.util.Optional;
 @Singleton
 public class BikeManagerClient implements BikeManager {
 
-    @Inject
-    @Client("http://bike-manager:8080/bikes")
-    private HttpClient httpClient;
+    private final HttpClient httpClient;
+    public BikeManagerClient(@Client("http://bike-manager:8080/bikes") HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
 
     @Override
     public boolean doesBikeExist(String bikeId) {
