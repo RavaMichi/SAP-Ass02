@@ -2,13 +2,13 @@ package service.infrastructure.endpoints;
 
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Header;
-import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.*;
 import service.application.RideManager;
+import service.domain.Ride;
 import service.domain.RideManagerException;
 import service.infrastructure.auth.AuthChecker;
+
+import java.util.List;
 
 @Controller("/ride-service")
 public class RideManagerAPI {
@@ -19,6 +19,15 @@ public class RideManagerAPI {
     public RideManagerAPI(RideManager rideManager, AuthChecker authChecker) {
         this.rideManager = rideManager;
         this.authChecker = authChecker;
+    }
+
+    @Get
+    public HttpResponse<List<Ride>> getAllRides(@Header(HttpHeaders.AUTHORIZATION) String token) {
+        if (authChecker.isAuthorized(token)) {
+            return HttpResponse.ok(rideManager.getAllRides());
+        } else {
+            return HttpResponse.unauthorized();
+        }
     }
 
     @Post("/connect")
