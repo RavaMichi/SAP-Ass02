@@ -26,6 +26,12 @@ public class ApiGateway extends AbstractVerticle {
     private void initializeRoutes() {
         // bike manager
         serviceRoutes.put("/bikes", "http://bike-manager:8080/bikes");
+        // account manager
+        serviceRoutes.put("/users", "http://account-manager:8080/users");
+        // ride manager
+        serviceRoutes.put("/ride-service", "http://ride-manager:8080/ride-service");
+        // auth server
+        serviceRoutes.put("/auth", "http://auth-service:8080/auth");
     }
 
     @Override
@@ -45,7 +51,7 @@ public class ApiGateway extends AbstractVerticle {
             HttpServerResponse response = ctx.response();
 
             // Match the incoming request path
-            String targetUrl = serviceRoutes.get(request.path());
+            String targetUrl = computeUrl(request.path());
 
             if (targetUrl != null) {
                 // forwarding
@@ -58,15 +64,16 @@ public class ApiGateway extends AbstractVerticle {
                                     .putHeaders(request.headers())
                                     .sendBuffer(b)
                     );
-                    default ->
-                            throw new IllegalStateException("Unexpected value: " + request.method().name().toUpperCase());
+                    default -> client.request(request.method(), targetUrl)
+                            .putHeaders(request.headers())
+                            .send();
                 };
                 requestBuilder.onSuccess(res -> {
                     response.setStatusCode(res.statusCode());
                     response.headers().setAll(res.headers());
                     response.end(res.bodyAsBuffer());
                 }).onFailure(err -> {
-                    response.setStatusCode(500).end("Failed to contact service.");
+                    response.setStatusCode(500).end("Could not forward the request.");
                 });
             } else {
                 // no matching service route
@@ -82,5 +89,13 @@ public class ApiGateway extends AbstractVerticle {
                 System.err.println("Failed to start API Gateway: " + http.cause().getMessage());
             }
         });
+    }
+    // try to compute the new path to forward
+    private String computeUrl(String path) {
+        return serviceRoutes.keySet().stream()
+                .filter(path::startsWith)
+                .findAny()
+                .map(route -> path.replaceFirst(route, serviceRoutes.get(route)))
+                .orElse(null);
     }
 }
