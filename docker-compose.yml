@@ -6,7 +6,7 @@ services:
     volumes:
       - "./prometheus.yml:/etc/prometheus/prometheus.yml"
     networks:
-      - prometheus
+      - service-net
     ports:
       - "9090:9090"
     expose:
@@ -15,7 +15,7 @@ services:
     image: bike-manager
     container_name: bike-manager-01
     networks:
-      - prometheus
+      - service-net
     ports:
       - "9091:8080"
     expose:
@@ -24,11 +24,29 @@ services:
     image: account-manager
     container_name: account-manager-01
     networks:
-      - prometheus
+      - service-net
     ports:
       - "9092:8080"
     expose:
       - 9092
+  ride-manager:
+    image: ride-manager
+    container_name: ride-manager-01
+    networks:
+      - service-net
+    ports:
+      - "9093:8080"
+    expose:
+      - 9093
+  auth-service:
+    image: auth-service
+    container_name: auth-service-01
+    networks:
+      - service-net
+    ports:
+      - "9094:8080"
+    expose:
+      - 9094
 networks:
-  prometheus:
+  service-net:
     driver: bridge
