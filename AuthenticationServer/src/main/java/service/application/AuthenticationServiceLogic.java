@@ -2,7 +2,11 @@ package service.application;
 
 import jakarta.inject.Singleton;
 import service.domain.AuthenticationException;
+import service.domain.User;
 
+/**
+ * Adapter for Authentication service. Uses a database and a token generator
+ */
 @Singleton
 public class AuthenticationServiceLogic implements AuthenticationService {
 
@@ -16,11 +20,17 @@ public class AuthenticationServiceLogic implements AuthenticationService {
 
     @Override
     public String authenticate(String username, String password) throws AuthenticationException {
-        return "";
+        User user = new User(username, password);
+        if (!userDatabase.contains(user)) {
+            throw new AuthenticationException("Invalid username or password");
+        } else {
+            return tokenGenerator.generate(user);
+        }
     }
 
     @Override
-    public String addUser(String username, String password) throws AuthenticationException {
-        return "";
+    public String register(String username, String password) throws AuthenticationException {
+        userDatabase.addUser(new User(username, password));
+        return authenticate(username, password);
     }
 }

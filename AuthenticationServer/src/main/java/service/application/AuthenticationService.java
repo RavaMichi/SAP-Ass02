@@ -7,5 +7,5 @@ import service.domain.AuthenticationException;
  */
 public interface AuthenticationService {
     String authenticate(String username, String password) throws AuthenticationException;
-    String addUser(String username, String password) throws AuthenticationException;
+    String register(String username, String password) throws AuthenticationException;
 }
