@@ -1,7 +1,10 @@
 package app;
 
+import io.vertx.core.Vertx;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Vertx vertx = Vertx.vertx();
+        vertx.deployVerticle(new ApiGateway(vertx));
     }
 }
