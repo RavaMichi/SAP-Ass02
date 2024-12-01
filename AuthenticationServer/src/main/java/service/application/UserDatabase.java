@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface UserDatabase {
     boolean contains(User user);
-    String addUser(User user);
+    void addUser(User user);
     List<User> getUsers();
 }
