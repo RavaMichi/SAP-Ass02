@@ -47,6 +47,15 @@ services:
       - "9094:8080"
     expose:
       - 9094
+  api-gateway:
+    image: api-gateway
+    container_name: api-gateway-01
+    networks:
+      - service-net
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
 networks:
   service-net:
     driver: bridge
