@@ -4,7 +4,6 @@ import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import service.application.BikeManager;
 import service.infrastructure.Config;
@@ -25,7 +24,7 @@ public class BikeManagerClient implements BikeManager {
     @Override
     public boolean doesBikeExist(String bikeId) {
         try {
-            HttpRequest<?> request = HttpRequest.GET("/" + bikeId).header(HttpHeaders.AUTHORIZATION, Config.serviceToken);
+            HttpRequest<?> request = HttpRequest.GET("/" + bikeId).header(HttpHeaders.AUTHORIZATION, Config.bikeTokens.get(bikeId));
             // send request and wait
             Optional<?> result = httpClient.toBlocking().retrieve(request, Optional.class);
             return result.isPresent();

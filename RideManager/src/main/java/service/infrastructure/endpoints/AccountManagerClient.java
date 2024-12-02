@@ -34,7 +34,7 @@ public class AccountManagerClient implements AccountManager {
 
     private Optional<UserInfo> getUserInfo(String username) {
         try {
-            HttpRequest<?> request = HttpRequest.GET("/" + username).header(HttpHeaders.AUTHORIZATION, Config.serviceToken);
+            HttpRequest<?> request = HttpRequest.GET("/" + username).header(HttpHeaders.AUTHORIZATION, Config.userTokens.get(username));
             // send request and wait
             return Optional.ofNullable(httpClient.toBlocking().retrieve(request, UserInfo.class));
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class AccountManagerClient implements AccountManager {
     @Override
     public void deductCreditsFromUser(String username, int amount) {
         try {
-            HttpRequest<?> request = HttpRequest.POST("/" + username + "/remove-credit", new UserInfo(username, amount)).header(HttpHeaders.AUTHORIZATION, Config.serviceToken);
+            HttpRequest<?> request = HttpRequest.POST("/" + username + "/remove-credit", new UserInfo(username, amount)).header(HttpHeaders.AUTHORIZATION, Config.userTokens.get(username));
             // send request and wait
             httpClient.toBlocking().retrieve(request, String.class);
 

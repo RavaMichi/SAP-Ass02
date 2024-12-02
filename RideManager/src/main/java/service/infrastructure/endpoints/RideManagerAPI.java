@@ -6,6 +6,7 @@ import io.micronaut.http.annotation.*;
 import service.application.RideManager;
 import service.domain.Ride;
 import service.domain.RideManagerException;
+import service.infrastructure.Config;
 import service.infrastructure.auth.AuthChecker;
 
 import java.util.List;
@@ -37,6 +38,10 @@ public class RideManagerAPI {
     ) {
         try {
             if (authChecker.isAuthorized(token)) {
+                // memorize tokens
+                Config.userTokens.put(req.userId(), token);
+                Config.bikeTokens.put(req.bikeId(), token);
+                // connect
                 rideManager.connectUserToBike(req.userId(), req.bikeId());
                 return HttpResponse.ok(new RMResponse("Successful connection", false));
             } else {
@@ -54,7 +59,11 @@ public class RideManagerAPI {
     ) {
         try {
             if (authChecker.isAuthorized(token)) {
+                // disconnect
                 rideManager.disconnectUserFromBike(req.userId(), req.bikeId());
+                // forget tokens
+                Config.userTokens.remove(req.userId());
+                Config.bikeTokens.remove(req.bikeId());
                 return HttpResponse.ok(new RMResponse("Successful disconnection", false));
             } else {
                 return HttpResponse.unauthorized();
