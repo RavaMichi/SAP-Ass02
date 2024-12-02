@@ -8,8 +8,13 @@ import service.domain.User;
  */
 @Singleton
 public class SimpleTokenGenerator implements TokenGenerator {
+
     @Override
     public String generate(User user) {
-        return "AUTHORIZED";
+        if (user == AuthenticationServiceLogic.admin) {
+            return "ADMIN";
+        } else {
+            return "AUTHORIZED";
+        }
     }
 }
