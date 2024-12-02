@@ -5,7 +5,12 @@ import jakarta.inject.Singleton;
 @Singleton
 public class SimpleUserAuthChecker implements AuthChecker {
     @Override
-    public boolean isAuthorized(String token) {
-        return token.equals("AUTHORIZED");
+    public boolean hasUserPermissions(String token) {
+        return token.equals("AUTHORIZED") || token.equals("ADMIN");
+    }
+
+    @Override
+    public boolean hasAdminPermissions(String token) {
+        return token.equals("ADMIN");
     }
 }

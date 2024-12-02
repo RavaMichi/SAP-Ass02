@@ -11,10 +11,10 @@ import service.domain.AuthenticationException;
 import service.infrastructure.db.Config;
 
 @Controller("/auth")
-public class AuthorizationServiceAPI {
+public class AuthenticationServiceAPI {
 
     private final AuthenticationService authenticationService;
-    public AuthorizationServiceAPI(AuthenticationService authenticationService) {
+    public AuthenticationServiceAPI(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 

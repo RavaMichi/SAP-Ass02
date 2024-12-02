@@ -23,7 +23,7 @@ public class BikeManagerAPI {
 
     @Get
     public HttpResponse<List<EBike>> getAllBikes(@Header(HttpHeaders.AUTHORIZATION) String token) {
-        if (authChecker.isAuthorized(token)) {
+        if (authChecker.hasUserPermissions(token)) {
             return HttpResponse.ok(bikeManager.getAllBikes());
         } else {
             return HttpResponse.unauthorized();
@@ -32,7 +32,7 @@ public class BikeManagerAPI {
 
     @Get("/{id}")
     public HttpResponse<Optional<EBike>> getBike(@Header(HttpHeaders.AUTHORIZATION) String token, String id) {
-        if (authChecker.isAuthorized(token)) {
+        if (authChecker.hasUserPermissions(token)) {
             return HttpResponse.ok(bikeManager.getBike(id));
         } else {
             return HttpResponse.unauthorized();
@@ -45,7 +45,7 @@ public class BikeManagerAPI {
             @Body BMRequest req
     ) {
         try {
-            if (authChecker.isAuthorized(token)) {
+            if (authChecker.hasUserPermissions(token)) {
                 bikeManager.addBike(req.id(), req.battery(), req.position());
                 return HttpResponse.created(new BMResponse("EBike " + req.id() + " added", false));
             } else {
