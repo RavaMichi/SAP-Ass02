@@ -45,7 +45,7 @@ public class BikeManagerAPI {
             @Body BMRequest req
     ) {
         try {
-            if (authChecker.hasUserPermissions(token)) {
+            if (authChecker.hasAdminPermissions(token)) {
                 bikeManager.addBike(req.id(), req.battery(), req.position());
                 return HttpResponse.created(new BMResponse("EBike " + req.id() + " added", false));
             } else {
