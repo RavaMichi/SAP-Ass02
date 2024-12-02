@@ -17,8 +17,8 @@ import java.util.*;
 @Singleton
 public class FileBikeDatabase implements BikeDatabase {
 
-    private final File db;
-    private final List<EBike> bikes;
+    private File db;
+    private List<EBike> bikes;
 
     @Inject
     public FileBikeDatabase() {
@@ -26,6 +26,10 @@ public class FileBikeDatabase implements BikeDatabase {
     }
 
     public FileBikeDatabase(String path) {
+        init(path);
+    }
+
+    public void init(String path) {
         URL url = this.getClass().getResource("/" + path);
         try {
             assert url != null;
