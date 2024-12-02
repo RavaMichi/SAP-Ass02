@@ -19,12 +19,17 @@ public class AuthenticationServiceLogic implements AuthenticationService {
     }
 
     @Override
+    public String generateToken(String username, String password) throws AuthenticationException {
+        return tokenGenerator.generate(new User(username, password));
+    }
+
+    @Override
     public String authenticate(String username, String password) throws AuthenticationException {
         User user = new User(username, password);
         if (!userDatabase.contains(user)) {
             throw new AuthenticationException("Invalid username or password");
         } else {
-            return tokenGenerator.generate(user);
+            return generateToken(username, password);
         }
     }
 

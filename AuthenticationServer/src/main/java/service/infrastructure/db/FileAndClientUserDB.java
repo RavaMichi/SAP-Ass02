@@ -53,7 +53,7 @@ public class FileAndClientUserDB implements UserDatabase {
     public void addUser(User user) {
         if (users.stream().noneMatch(u -> u.username().equals(user.username()))) {
             users.add(user);
-            accountManagerContains(user.username());
+            accountManagerAddUser(user.username());
         }
     }
 
@@ -65,7 +65,7 @@ public class FileAndClientUserDB implements UserDatabase {
     // query the remote service
     private boolean accountManagerContains(String username) {
         try {
-            HttpRequest<?> request = HttpRequest.GET("/" + username).header(HttpHeaders.AUTHORIZATION, Config.serviceToken);
+            HttpRequest<?> request = HttpRequest.GET("/" + username).header(HttpHeaders.AUTHORIZATION, Config.userTokens.get(username));
             // send request and wait
             return httpClient.toBlocking().retrieve(request, Optional.class).isPresent();
         } catch (Exception e) {
@@ -75,7 +75,7 @@ public class FileAndClientUserDB implements UserDatabase {
     // post to the remote service
     private void accountManagerAddUser(String username) {
         try {
-            HttpRequest<?> request = HttpRequest.POST("/add", new UserAdd(username)).header(HttpHeaders.AUTHORIZATION, Config.serviceToken);
+            HttpRequest<?> request = HttpRequest.POST("/add", new UserAdd(username)).header(HttpHeaders.AUTHORIZATION, Config.userTokens.get(username));
             // send request and wait
             httpClient.toBlocking().retrieve(request, String.class);
         } catch (Exception ignored) {}
