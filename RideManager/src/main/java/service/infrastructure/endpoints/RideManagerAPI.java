@@ -3,6 +3,8 @@ package service.infrastructure.endpoints;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
+import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.micronaut.scheduling.TaskExecutors;
 import service.application.RideManager;
 import service.domain.Ride;
 import service.domain.RideManagerException;
@@ -23,6 +25,7 @@ public class RideManagerAPI {
     }
 
     @Get("/rides")
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<List<Ride>> getAllRides(@Header(HttpHeaders.AUTHORIZATION) String token) {
         if (authChecker.isAuthorized(token)) {
             return HttpResponse.ok(rideManager.getAllRides());
@@ -32,6 +35,7 @@ public class RideManagerAPI {
     }
 
     @Post("/connect")
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<RMResponse> connect(
             @Header(HttpHeaders.AUTHORIZATION) String token,
             @Body RMRequest req
@@ -53,6 +57,7 @@ public class RideManagerAPI {
     }
 
     @Post("/disconnect")
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<RMResponse> disconnect(
             @Header(HttpHeaders.AUTHORIZATION) String token,
             @Body RMRequest req
@@ -74,6 +79,7 @@ public class RideManagerAPI {
     }
 
     @Get("/{userId}/get")
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<Optional<Ride>> getRide(
             @Header(HttpHeaders.AUTHORIZATION) String token,
             String userId
