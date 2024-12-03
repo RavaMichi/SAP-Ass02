@@ -5,4 +5,4 @@ package service.domain;
  * @param username
  * @param password
  */
-public record User(String username, String password) {}
+public record User(String username, String password) implements java.io.Serializable {}

@@ -3,7 +3,7 @@ package service.infrastructure.db;
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpRequest;
-import io.micronaut.http.client.HttpClient;
+import io.micronaut.http.client.*;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import io.micronaut.http.client.annotation.Client;
@@ -70,6 +70,7 @@ public class FileAndClientUserDB implements UserDatabase {
             // send request and wait
             return httpClient.toBlocking().retrieve(request, Optional.class).isPresent();
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -79,7 +80,9 @@ public class FileAndClientUserDB implements UserDatabase {
             HttpRequest<?> request = HttpRequest.POST("/add", new UserAdd(username)).header(HttpHeaders.AUTHORIZATION, Config.userTokens.get(username));
             // send request and wait
             httpClient.toBlocking().retrieve(request, String.class);
-        } catch (Exception ignored) {}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private List<User> readAllUsers() {

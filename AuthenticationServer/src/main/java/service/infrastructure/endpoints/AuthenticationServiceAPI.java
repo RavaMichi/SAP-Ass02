@@ -6,6 +6,8 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Produces;
+import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.micronaut.scheduling.TaskExecutors;
 import service.application.AuthenticationService;
 import service.domain.AuthenticationException;
 import service.infrastructure.db.Config;
@@ -20,6 +22,7 @@ public class AuthenticationServiceAPI {
 
     @Post("/login")
     @Produces(MediaType.TEXT_PLAIN)
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<String> login(@Body LoginRequest req) {
         try {
             // create temp token
@@ -37,6 +40,7 @@ public class AuthenticationServiceAPI {
 
     @Post("/register")
     @Produces(MediaType.TEXT_PLAIN)
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<String> register(@Body LoginRequest req) {
         try {
             // create temp token
