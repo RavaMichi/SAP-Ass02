@@ -9,7 +9,7 @@ import service.domain.RideManagerException;
 import service.infrastructure.Config;
 import service.infrastructure.auth.AuthChecker;
 
-import java.util.List;
+import java.util.*;
 
 @Controller("/ride-service")
 public class RideManagerAPI {
@@ -70,6 +70,25 @@ public class RideManagerAPI {
             }
         } catch (RideManagerException e) {
             return HttpResponse.badRequest(new RMResponse(e.getMessage(), true));
+        }
+    }
+
+    @Get("/{userId}/get")
+    public HttpResponse<Optional<Ride>> getRide(
+            @Header(HttpHeaders.AUTHORIZATION) String token,
+            String userId
+    ) {
+        try {
+            if (authChecker.isAuthorized(token)) {
+                var ride = rideManager.getAllRides().stream()
+                        .filter(r -> r.userId().equals(userId))
+                        .findFirst();
+                return HttpResponse.ok(ride);
+            } else {
+                return HttpResponse.unauthorized();
+            }
+        } catch (RideManagerException e) {
+            return HttpResponse.badRequest();
         }
     }
 
