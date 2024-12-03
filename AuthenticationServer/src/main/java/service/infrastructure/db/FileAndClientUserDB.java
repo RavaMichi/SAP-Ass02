@@ -54,6 +54,7 @@ public class FileAndClientUserDB implements UserDatabase {
         if (users.stream().noneMatch(u -> u.username().equals(user.username()))) {
             users.add(user);
             accountManagerAddUser(user.username());
+            writeAllUsers();
         }
     }
 
