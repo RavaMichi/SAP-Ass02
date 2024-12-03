@@ -58,11 +58,9 @@ public class ApiGateway extends AbstractVerticle {
                     case "GET" -> client.get(target.get().port(), target.get().host(), target.get().uri())
                             .putHeaders(request.headers())
                             .send();
-                    case "POST" -> request.body().flatMap(
-                            b -> client.post(target.get().port(), target.get().host(), target.get().uri())
-                                    .putHeaders(request.headers())
-                                    .sendBuffer(b)
-                    );
+                    case "POST" -> client.post(target.get().port(), target.get().host(), target.get().uri())
+                            .putHeaders(request.headers())
+                            .sendBuffer(ctx.getBody());
                     default -> client.request(request.method(), target.get().port(), target.get().host(), target.get().uri())
                             .putHeaders(request.headers())
                             .send();
