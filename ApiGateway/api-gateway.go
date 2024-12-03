@@ -16,9 +16,9 @@ var serviceMap = map[string]string{
 	"auth":         "http://auth-service:8080",    // auth-service
 }
 
-// ProxyRequest forwards the request to the appropriate service
+// forwards the request to the appropriate service
 func ProxyRequest(w http.ResponseWriter, r *http.Request) {
-	// Extract the service name from the URL path
+	// extract URL path
 	parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 	if len(parts) < 1 {
 		http.Error(w, "Bad request", http.StatusBadRequest)
@@ -26,14 +26,14 @@ func ProxyRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	serviceName := parts[0]
 
-	// Look up the service URL
+	// look up the service URL
 	serviceURL, ok := serviceMap[serviceName]
 	if !ok {
 		http.Error(w, "Service not found", http.StatusNotFound)
 		return
 	}
 
-	// Construct the target URL
+	// target URL
 	targetURL, err := url.Parse(serviceURL)
 	if err != nil {
 		http.Error(w, "Invalid service URL", http.StatusInternalServerError)
@@ -45,10 +45,8 @@ func ProxyRequest(w http.ResponseWriter, r *http.Request) {
 	r.URL.Path = "/" + strings.Join(parts, "/") // Rewrite the URL path
 	r.Host = targetURL.Host                     // Update the Host header
 
-	// Log the request
 	log.Printf("Forwarding request: %s -> %s%s", r.URL.Path, targetURL, r.URL.Path)
 
-	// Proxy the request
 	proxy.ErrorHandler = func(w http.ResponseWriter, req *http.Request, e error) {
 		log.Printf("Proxy error: %v", e)
 		http.Error(w, "Proxy error", http.StatusBadGateway)
