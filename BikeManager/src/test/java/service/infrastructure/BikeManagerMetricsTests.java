@@ -35,11 +35,11 @@ public class BikeManagerMetricsTests {
     }
 
     @Test
-    public void testAllBikes() {
+    public void testBikeMetrics() {
         HttpRequest<?> allBikes = HttpRequest.GET("/metrics/total-bikes");
         int n_bikes = client.toBlocking().retrieve(allBikes, int.class);
 
-        HttpRequest<?> addBike = HttpRequest.POST("/bikes/add", new BMRequest("b1", 20, new V2d(0,0))).header(HttpHeaders.AUTHORIZATION, "AUTHORIZED");
+        HttpRequest<?> addBike = HttpRequest.POST("/bikes/add", new BMRequest("b1", 20, new V2d(0,0))).header(HttpHeaders.AUTHORIZATION, "ADMIN");
         client.toBlocking().retrieve(addBike, BMResponse.class);
 
         int updated_n_bikes = client.toBlocking().retrieve(allBikes, int.class);
