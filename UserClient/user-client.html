@@ -153,8 +153,21 @@
 
                 token = await response.text();
 
-                alert('Login successful! Token stored for further use.');
-                showConnectionForm();
+                alert('Login successful!');
+
+                // check for already present connection
+                const connection = await fetch('http://localhost:8080/ride-service/'+username+'/get', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': token
+                    },
+                }).then(r => r.json());
+                if (connection == null) {
+                    showConnectionForm();
+                } else {
+                    bikeId = connection.bikeId;
+                    showDisconnectionForm();
+                }
             } catch (error) {
                 console.error(error);
                 errorDiv.textContent = 'Login failed. Please try again.';
@@ -181,7 +194,7 @@
 
                 token = await response.text();
                 
-                alert('Registration successful! Token stored for further use.');
+                alert('Registration successful!');
                 showConnectionForm();
             } catch (error) {
                 console.error(error);
