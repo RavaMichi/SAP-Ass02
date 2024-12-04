@@ -45,12 +45,18 @@
         .container button:hover {
             background-color: #0056b3;
         }
+        .link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007BFF;
+            cursor: pointer;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
         .error {
             color: red;
-            text-align: center;
-        }
-        .success {
-            color: green;
             text-align: center;
         }
     </style>
@@ -64,6 +70,7 @@
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <div class="link" id="registerLink">Don't have an account? Register</div>
     </div>
 
     <script>
@@ -72,6 +79,36 @@
         let token = '';
         let username = '';
         let bikeId = '';
+
+        const showLoginForm = () => {
+            app.innerHTML = `
+                <h2>Login</h2>
+                <div class="error" id="error"></div>
+                <form id="loginForm">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="link" id="registerLink">Don't have an account? Register</div>
+            `;
+            document.getElementById('loginForm').addEventListener('submit', login);
+            document.getElementById('registerLink').addEventListener('click', showRegisterForm);
+        };
+
+        const showRegisterForm = () => {
+            app.innerHTML = `
+                <h2>Register</h2>
+                <div class="error" id="error"></div>
+                <form id="registerForm">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit">Register</button>
+                </form>
+                <div class="link" id="loginLink">Already have an account? Login</div>
+            `;
+            document.getElementById('registerForm').addEventListener('submit', register);
+            document.getElementById('loginLink').addEventListener('click', showLoginForm);
+        };
 
         const showConnectionForm = () => {
             app.innerHTML = `
@@ -96,9 +133,64 @@
             document.getElementById('disconnectButton').addEventListener('click', disconnectFromBike);
         };
 
+        const login = async (e) => {
+            e.preventDefault();
+            username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Login failed: ${response.status}`);
+                }
+
+                token = await response.text();
+
+                alert('Login successful! Token stored for further use.');
+                showConnectionForm();
+            } catch (error) {
+                console.error(error);
+                errorDiv.textContent = 'Login failed. Please try again.';
+            }
+        };
+
+        const register = async (e) => {
+            e.preventDefault();
+            username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Registration failed: ${response.status}`);
+                }
+
+                token = await response.text();
+                
+                alert('Registration successful! Token stored for further use.');
+                showConnectionForm();
+            } catch (error) {
+                console.error(error);
+                errorDiv.textContent = 'Registration failed. Please try again.';
+            }
+        };
+
         const connectToBike = async (e) => {
             e.preventDefault();
-
             bikeId = document.getElementById('bikeId').value;
 
             try {
@@ -106,7 +198,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': token
                     },
                     body: JSON.stringify({ userId: username, bikeId }),
                 });
@@ -129,7 +221,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': token
                     },
                     body: JSON.stringify({ userId: username, bikeId }),
                 });
@@ -146,34 +238,8 @@
             }
         };
 
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent default form submission
-
-            username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const response = await fetch('http://localhost:8080/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ username, password }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Login failed: ${response.status}`);
-                }
-
-                const data = await response.json();
-                token = data.token; // Save the token for future requests
-                alert('Login successful! Token stored for further use.');
-                showConnectionForm();
-            } catch (error) {
-                console.error(error);
-                errorDiv.textContent = 'Login failed. Please try again.';
-            }
-        });
+        // Initialize with login form
+        showLoginForm();
     </script>
 </body>
 </html>

@@ -18,6 +18,15 @@ var serviceMap = map[string]string{
 
 // forwards the request to the appropriate service
 func ProxyRequest(w http.ResponseWriter, r *http.Request) {
+
+	// Handle CORS preflight requests
+	if r.Method == http.MethodOptions {
+		handlePreflight(w, r)
+		return
+	}
+
+	addCORSHeaders(w)
+
 	// extract URL path
 	parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 	if len(parts) < 1 {
@@ -52,6 +61,20 @@ func ProxyRequest(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Proxy error", http.StatusBadGateway)
 	}
 	proxy.ServeHTTP(w, r)
+}
+
+// handlePreflight responds to CORS preflight requests
+func handlePreflight(w http.ResponseWriter, r *http.Request) {
+	addCORSHeaders(w)
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+	w.WriteHeader(http.StatusNoContent) // Respond with 204 No Content
+}
+
+// addCORSHeaders adds CORS headers to the response
+func addCORSHeaders(w http.ResponseWriter) {
+	w.Header().Set("Access-Control-Allow-Origin", "*") // Change "*" to specific origin if needed
+	w.Header().Set("Access-Control-Allow-Credentials", "true")
 }
 
 func main() {
