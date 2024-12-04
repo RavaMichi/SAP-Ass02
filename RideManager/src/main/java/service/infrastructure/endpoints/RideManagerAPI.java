@@ -3,6 +3,7 @@ package service.infrastructure.endpoints;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
+import io.micronaut.core.annotation.*;
 import io.micronaut.scheduling.annotation.ExecuteOn;
 import io.micronaut.scheduling.TaskExecutors;
 import service.application.RideManager;
@@ -98,6 +99,8 @@ public class RideManagerAPI {
         }
     }
 
+    @Introspected
     public record RMRequest(String userId, String bikeId) {}
+    @Introspected
     public record RMResponse(String message, boolean error) {}
 }

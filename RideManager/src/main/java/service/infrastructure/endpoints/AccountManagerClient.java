@@ -18,9 +18,12 @@ import java.util.Optional;
  */
 @Singleton
 public class AccountManagerClient implements AccountManager {
-    @Inject
-    @Client("http://account-manager:8080/users")
-    private HttpClient httpClient;
+
+    private final HttpClient httpClient;
+
+    public AccountManagerClient(@Client("http://account-manager:8080/users") HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
 
     @Override
     public boolean doesUserExist(String username) {
@@ -38,6 +41,7 @@ public class AccountManagerClient implements AccountManager {
             // send request and wait
             return Optional.ofNullable(httpClient.toBlocking().retrieve(request, UserInfo.class));
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return Optional.empty();
         }
     }
@@ -55,5 +59,5 @@ public class AccountManagerClient implements AccountManager {
     }
 
     @Introspected
-    private record UserInfo(String username, int credits) {}
+    public record UserInfo(String username, int credits) {}
 }
