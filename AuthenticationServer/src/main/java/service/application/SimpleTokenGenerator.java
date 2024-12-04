@@ -11,7 +11,7 @@ public class SimpleTokenGenerator implements TokenGenerator {
 
     @Override
     public String generate(User user) {
-        if (user == AuthenticationServiceLogic.admin) {
+        if (user.equals(AuthenticationServiceLogic.admin)) {
             return "ADMIN";
         } else {
             return "AUTHORIZED";

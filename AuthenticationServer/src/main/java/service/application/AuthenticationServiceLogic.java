@@ -37,7 +37,7 @@ public class AuthenticationServiceLogic implements AuthenticationService {
 
     @Override
     public String register(String username, String password) throws AuthenticationException {
-        if (userDatabase.getUsers().stream().anyMatch(u -> u.username().equals(username))) {
+        if (username == admin.username() || userDatabase.getUsers().stream().anyMatch(u -> u.username().equals(username))) {
             throw new AuthenticationException("User already registered");
         }
         userDatabase.addUser(new User(username, password));

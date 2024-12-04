@@ -8,6 +8,7 @@ import jakarta.inject.Singleton;
 import service.application.BikeManager;
 import service.infrastructure.Config;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -26,8 +27,8 @@ public class BikeManagerClient implements BikeManager {
         try {
             HttpRequest<?> request = HttpRequest.GET("/" + bikeId).header(HttpHeaders.AUTHORIZATION, Config.bikeTokens.get(bikeId));
             // send request and wait
-            Optional<?> result = httpClient.toBlocking().retrieve(request, Optional.class);
-            return result.isPresent();
+            String result = httpClient.toBlocking().retrieve(request, String.class);
+            return !Objects.equals(result, "null");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -45,12 +45,18 @@
         .container button:hover {
             background-color: #0056b3;
         }
+        .link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007BFF;
+            cursor: pointer;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
         .error {
             color: red;
-            text-align: center;
-        }
-        .success {
-            color: green;
             text-align: center;
         }
     </style>
@@ -64,6 +70,7 @@
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <div class="link" id="registerLink">Don't have an account? Register</div>
     </div>
 
     <script>
@@ -72,6 +79,65 @@
         let token = '';
         let username = '';
         let bikeId = '';
+        let userCredits = 0;
+
+        const fetchUserCredits = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/users/${username}`, {
+                    headers: {
+                        'Authorization': token,
+                    },
+                });
+                if (!response.ok) throw new Error('Failed to fetch credits');
+                const data = await response.json();
+                userCredits = data.credits || 0;
+            } catch (error) {
+                console.error(error);
+                errorDiv.textContent = 'Failed to fetch credits.';
+            }
+        };
+
+        const showCreditRechargeForm = async () => {
+            await fetchUserCredits();
+            const rechargeForm = `
+                <h2>Credit Recharge</h2>
+                <p>Current Credits: <span id="currentCredits">${userCredits}</span></p>
+                <form id="rechargeForm">
+                    <input type="number" id="rechargeAmount" placeholder="Enter amount" min="1" required>
+                    <button type="submit">Recharge</button>
+                </form>
+            `;
+            const rechargeContainer = document.createElement('div');
+            rechargeContainer.innerHTML = rechargeForm;
+            app.appendChild(rechargeContainer);
+
+            document.getElementById('rechargeForm').addEventListener('submit', rechargeCredits);
+        };
+
+        const rechargeCredits = async (e) => {
+            e.preventDefault();
+            const amount = parseInt(document.getElementById('rechargeAmount').value, 10);
+
+            try {
+                const response = await fetch(`http://localhost:8080/users/${username}/add-credit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token,
+                    },
+                    body: JSON.stringify({ username, credits: amount }),
+                });
+
+                if (!response.ok) throw new Error('Recharge failed');
+
+                await fetchUserCredits();
+                document.getElementById('currentCredits').textContent = userCredits;
+                alert('Credits recharged successfully!');
+            } catch (error) {
+                console.error(error);
+                errorDiv.textContent = 'Failed to recharge credits.';
+            }
+        };
 
         const showConnectionForm = () => {
             app.innerHTML = `
@@ -82,8 +148,8 @@
                     <button type="submit">Connect</button>
                 </form>
             `;
-
             document.getElementById('connectForm').addEventListener('submit', connectToBike);
+            showCreditRechargeForm();
         };
 
         const showDisconnectionForm = () => {
@@ -92,29 +158,45 @@
                 <div class="error" id="error"></div>
                 <button id="disconnectButton">Disconnect</button>
             `;
-
             document.getElementById('disconnectButton').addEventListener('click', disconnectFromBike);
+            showCreditRechargeForm();
+        };
+
+        const login = async (e) => {
+            e.preventDefault();
+            username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                if (!response.ok) throw new Error('Login failed');
+                token = await response.text();
+
+                alert('Login successful!');
+                showConnectionForm();
+            } catch (error) {
+                console.error(error);
+                errorDiv.textContent = 'Login failed. Please try again.';
+            }
         };
 
         const connectToBike = async (e) => {
             e.preventDefault();
-
             bikeId = document.getElementById('bikeId').value;
 
             try {
                 const response = await fetch('http://localhost:8080/ride-service/connect', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': token },
                     body: JSON.stringify({ userId: username, bikeId }),
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Connection failed: ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error('Connection failed');
                 alert('E-Bike connected successfully!');
                 showDisconnectionForm();
             } catch (error) {
@@ -127,17 +209,11 @@
             try {
                 const response = await fetch('http://localhost:8080/ride-service/disconnect', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': token },
                     body: JSON.stringify({ userId: username, bikeId }),
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Disconnection failed: ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error('Disconnection failed');
                 alert('E-Bike disconnected successfully!');
                 showConnectionForm();
             } catch (error) {
@@ -146,34 +222,21 @@
             }
         };
 
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent default form submission
+        const showLoginForm = () => {
+            app.innerHTML = `
+                <h2>Login</h2>
+                <div class="error" id="error"></div>
+                <form id="loginForm">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+            `;
+            document.getElementById('loginForm').addEventListener('submit', login);
+        };
 
-            username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const response = await fetch('http://localhost:8080/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ username, password }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Login failed: ${response.status}`);
-                }
-
-                const data = await response.json();
-                token = data.token; // Save the token for future requests
-                alert('Login successful! Token stored for further use.');
-                showConnectionForm();
-            } catch (error) {
-                console.error(error);
-                errorDiv.textContent = 'Login failed. Please try again.';
-            }
-        });
+        // Initialize with login form
+        showLoginForm();
     </script>
 </body>
 </html>
