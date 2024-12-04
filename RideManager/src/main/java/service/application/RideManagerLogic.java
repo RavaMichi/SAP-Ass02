@@ -30,7 +30,7 @@ public class RideManagerLogic implements RideManager {
         if (!accountManager.doesUserExist(userId)) throw new RideManagerException("User does not exist");
         if (database.getAllRides().stream().anyMatch(r -> Objects.equals(r.bikeId(), bikeId) || Objects.equals(r.userId(), userId)))
             throw new RideManagerException("User or Bike already in use");
-        if (accountManager.doesUserHaveEnoughCredits(userId, feeCalculator.minimumAmountForConnection()))
+        if (!accountManager.doesUserHaveEnoughCredits(userId, feeCalculator.minimumAmountForConnection()))
             throw new RideManagerException("User has not enough credits");
 
         Ride newRide = new Ride(userId, bikeId, new Date());
