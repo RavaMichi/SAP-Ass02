@@ -3,6 +3,7 @@ name: bike-rental-service
 services:
   prometheus:
     image: prom/prometheus
+    restart: on-failure
     volumes:
       - "./prometheus.yml:/etc/prometheus/prometheus.yml"
     networks:
@@ -13,6 +14,7 @@ services:
       - 9090
   bike-manager:
     image: bike-manager
+    restart: on-failure
     container_name: bike-manager-01
     networks:
       - service-net
@@ -22,6 +24,7 @@ services:
       - 9091
   account-manager:
     image: account-manager
+    restart: on-failure
     container_name: account-manager-01
     networks:
       - service-net
@@ -31,6 +34,7 @@ services:
       - 9092
   ride-manager:
     image: ride-manager
+    restart: on-failure
     container_name: ride-manager-01
     networks:
       - service-net
@@ -40,6 +44,7 @@ services:
       - 9093
   auth-service:
     image: auth-service
+    restart: on-failure
     container_name: auth-service-01
     networks:
       - service-net
@@ -49,6 +54,7 @@ services:
       - 9094
   api-gateway:
     image: api-gateway
+    restart: on-failure
     container_name: api-gateway-01
     networks:
       - service-net
