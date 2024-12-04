@@ -1,5 +1,8 @@
 package service.infrastructure.endpoints;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpRequest;
@@ -39,7 +42,10 @@ public class AccountManagerClient implements AccountManager {
         try {
             HttpRequest<?> request = HttpRequest.GET("/" + username).header(HttpHeaders.AUTHORIZATION, Config.userTokens.get(username));
             // send request and wait
-            return Optional.ofNullable(httpClient.toBlocking().retrieve(request, UserInfo.class));
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode node = mapper.readTree(httpClient.toBlocking().retrieve(request, String.class));
+            UserInfo userInfo = mapper.treeToValue(node, UserInfo.class);
+            return Optional.ofNullable(userInfo);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return Optional.empty();
